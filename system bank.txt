@@ -1,0 +1,113 @@
+class User():
+    def __init__(self,name,age,gender):
+        self.name=name
+        self.age=age
+        self.gender=gender
+
+
+    def showUser(self):
+        print(self.name)
+        print(self.age)
+        print(self.gender)
+class Bank(User):
+    def __init__(self, name, age, gender,password,balance):
+        User.__init__(self,name,age,gender)
+        self._balance=balance
+        self._amount=0
+        self._password=password
+
+
+    def deposite(self,value):
+        self._balance=self._balance+value
+        print("your balance is{}".format(self._balance))
+
+    def withdraw(self,value):
+        if(self._balance >= value):
+            self._balance = self._balance - value
+            print("your balance is{}".format(self._balance))
+        else:
+            print("only {} available . Withdrawal not processed".format(self._balance))
+
+    def ViewBalance(self):
+        print(self._balance)
+
+    def checkpasword(self, password):
+        return password == self._password
+    def donate(self,value):
+        if(self._balance >= value):
+            self._balance=self._balance-value
+            print("your balance is{}".format(self._balance))
+        else:
+            print("only {} available . donate not processed".format(self._balance))
+
+
+ahmed=Bank("azema",21,"male",1478,1000)
+khaled=Bank("khaled mohamed",25,"male",1598,1000)
+hazem=Bank("hazem khaled",15,"male",1547,1000)
+
+variableObject : Bank
+
+
+
+while(1):
+
+    print("enter your name")
+    name =   (input())
+
+    if name == "khaled":
+
+            variableObject = khaled
+
+
+    elif name == "ahmed":
+        variableObject = ahmed
+
+    elif name == "hazem":
+        variableObject = hazem
+
+    else:
+        continue
+
+    print("enter your password")
+
+    if ( variableObject.checkpasword(int (input()) )  == False) :
+        print("Wrong password")
+        continue
+    else:
+
+        while (1):
+            print("for deposit enter 1")
+            print("for withdraw enter 2")
+            print("for showBalance enter 3")
+            print("for showUser enter 4")
+            print("for donate enter 5")
+            print("for logout enter 6")
+
+            x = int(input())
+
+            if x == 1:
+                print("enter value")
+                value = float(input())
+                variableObject.deposite(value)
+
+            elif x == 2:
+                print("enter value")
+                value = float(input())
+                variableObject.withdraw(value)
+
+            elif x == 3:
+                variableObject.ViewBalance()
+
+            elif x == 4:
+                variableObject.showUser()
+            elif x == 5:
+                print("enter donate value")
+                value=float(input())
+                variableObject.donate(value)
+            elif x == 6:
+                print("thank you" )
+                break
+
+            else:
+                print("wrong  number")
+
